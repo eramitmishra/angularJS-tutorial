@@ -1,0 +1,49 @@
+﻿<!-- 
+    ng-app − This directive starts an AngularJS Application.
+    ng-init − This directive initializes application data.
+    ng-model − This directive defines the model that is variable to be used in AngularJS.
+    ng-repeat − This directive repeats html elements for each item in a collection.    
+-->
+
+
+<!DOCTYPE html>
+<html ng-app="">
+<head>
+    <title>ng-app − ng-init − ng-model - ng-repeat</title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.js"></script>
+
+    <script>
+
+        var StudentsLog = [{ Name: 'Amit Kumar Mishra', Class: 'II' }, { Name: 'Amit Kumar Mishra', Class: 'II' }, { Name: 'Amit Kumar Mishra', Class: 'II' }, { Name: 'Amit Kumar Mishra', Class: 'II' }, { Name: 'Amit Kumar Mishra', Class: 'II' }];
+
+    </script>
+
+
+</head>
+<body>
+    <div>
+        <input type="text" name="name" value="" ng-model="name" />
+        <span ng-bind="name"></span>
+    </div>
+
+
+    <p>List of Countries with locale:</p>
+    <div ng-init = "countries = [{locale:'en-US',name:'United States'}, {locale:'en-GB',name:'United Kingdom'}, {locale:'en-FR',name:'France'}]">
+        <ol>
+            <li ng-repeat="country in countries">
+                <b>{{ 'Country: ' + country.name + ', Locale: ' + country.locale }}</b>
+            </li>
+        </ol>
+    </div>
+
+    <div ng-init="StudentsLog = [{ Name: 'Amit Kumar Mishra', Class: 'II' }, { Name: 'Amit Kumar Mishra', Class: 'II' }, { Name: 'Amit Kumar Mishra', Class: 'II' }, { Name: 'Amit Kumar Mishra', Class: 'II' }, { Name: 'Amit Kumar Mishra', Class: 'II' }]"> 
+        <ul>
+            <li ng-repeat="student in StudentsLog">
+                {{student.Name +" "+ student.Class}}
+            </li>
+        </ul>
+
+    </div>
+</body>
+</html>

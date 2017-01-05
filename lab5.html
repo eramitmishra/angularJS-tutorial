@@ -1,0 +1,43 @@
+﻿<!-- 
+  AngularJS - Controllers
+   
+    how to Creating Controller?
+-->
+
+
+<!DOCTYPE html>
+<html >
+<head>
+    <title>AngularJS - Controllers</title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.js"></script>
+    <script>
+        var mainapp = angular.module("myapp", [])
+        .controller("studentController", function ($scope) {
+            $scope.student = {
+                name: 'Amit Kumar Mishra',
+                Class: 'II',
+                studentDetail: function () {
+                    return "Name: " + $scope.student.name + " Class: " + $scope.student.Class;
+                }
+            };
+        });
+
+
+    </script>
+
+
+</head>
+<body ng-app="myapp">
+    <h1>Creating Controllers</h1>
+    <div ng-controller="studentController">
+
+        Enter first name: <input type="text" ng-model="student.name"><br><br>
+        Enter last name: <input type="text" ng-model="student.Class"><br>
+        <br>
+
+        You are entering: {{student.studentDetail()}}
+
+    </div>
+</body>
+</html>

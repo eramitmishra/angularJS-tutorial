@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html ng-app="">
+<head>
+    <title>ng-bind</title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.js"></script>
+</head>
+<body>
+    <div>
+        <label>Name:</label>
+        <input type="text" ng-model="yourName" placeholder="Enter a name here">
+        <hr />
+        <p>Hello <span ng-bind="yourName"></span>!</p>
+    </div>
+</body>
+</html>

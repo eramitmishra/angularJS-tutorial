@@ -1,0 +1,39 @@
+﻿<!--AngularJS - Includes-->
+<!--     
+HTML does not support embedding html pages within html page. To achieve this functionality following ways are used −
+
+        1. Using Ajax − 
+                        Make a server call to get the corresponding html page and set it in innerHTML of html control.
+           
+        2. Using Server Side Includes − 
+                        JSP, PHP and other web side server technologies can include html pages within a dynamic page.
+
+Using AngularJS, we can embed HTML pages within a HTML page using ng-include directive.    
+-->
+<!DOCTYPE html>
+<html ng-app="mymodule">
+<head>
+    <title>AngularJS - Includes</title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.js"></script>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="jsFiles/moduleslab9.js"></script>
+    <script src="jsFiles/controllerLab9.js"></script>
+
+
+</head>
+<body>
+
+
+    <div class="panel" ng-controller="employeeControl">
+        <div class="panel-heading text-info text-center">AngularJS - Includes.</div>
+        <div class="panel-body">            
+            <div class="panel-default" ng-include="'UserControl/empTextList_lab11.html'"></div>            
+            <p class="h3">Employee List</p>
+            <div class="panel-group panel" ng-include="'UserControl/emplist_lab11.html'"></div>
+        </div>    
+        <div class="panel-footer">Footer</div>
+
+    </div>
+</body>
+</html>

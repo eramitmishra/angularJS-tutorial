@@ -1,0 +1,48 @@
+﻿<!-- AngularJS - HTML DOM -->
+<!-- 
+Sr.No.  	Name	        Description
+1   	    ng-disabled	    disables a given control.
+2   	    ng-show	        shows a given control.
+3   	    ng-hide	        hides a given control.
+4   	    ng-click	    represents a AngularJS click event.
+-->
+
+<!DOCTYPE html>
+<html>
+<head >
+    <title> AngularJS : HTML DOM </title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.js"></script>
+</head>
+<body ng-app>
+
+   
+
+    
+
+    <table>
+        <tr>
+            <td><input type="checkbox" ng-model="ens" name="name" /> <b>Click For Disable</b></td>
+            <td><button ng-disabled="ens">Click Me!</button></td>
+            <td>using ng-disabled Directive {disables a given control.}</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" ng-model="ensh" name="name" /> <b>Click For Disable</b></td>
+            <td><button ng-show="ensh">Click Me!</button></td>
+            <td>using ng-show Directive {shows a given control.}</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" ng-model="enshs" name="name" /> <b>Click For Disable</b></td>
+            <td><button ng-hide="enshs">Click Me!</button></td>
+            <td>using ng-hide Directive {hides a given control..}</td>
+        </tr>
+        <tr>
+            <td><p>Total click: {{ clickCounter }}</p></td>
+            <td><button ng-click="clickCounter = clickCounter + 1">Click Me!</button></td>
+            <td>using ng-click Directive {represents a AngularJS click event.}</td>
+        </tr>
+    </table>
+  
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+﻿<!--AngularJS - Ajax-->
+
+<!--
+     AngularJS provides $https: control which works as a service to read data from the server. 
+        The server makes a database call to get the desired records. AngularJS needs data in JSON format. 
+        Once the data is ready, $https: can be used to get the data from server in the following manner  
+-->
+<!DOCTYPE html>
+<html ng-app="myModel">
+<head>
+    <title>AngularJS - Ajax</title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.js"></script>
+    <link rel="stylesheet" href="Content/bootstrap.css" />
+    <script>
+        //angular.element(document).ready(function () {
+        //    angular.bootstrap(document, ["myModel"]);
+        //});
+
+         var mmd =angular.module("myModel", []).controller("EmployeeController", function ($scope,$http) {
+            var url = "Data/EmployeeData.json";
+            $http.get(url).success(function (response) {
+                //$scope.EmpolyeesList = response;
+                $scope.Empolyee = {
+                    EmpolyeesList: response,
+                    EmpolyeeAge: function (dateString) {
+                        var today = new Date();
+                        var birthDate = new Date(dateString);
+                        var age = today.getFullYear() - birthDate.getFullYear();
+                        var m = today.getMonth() - birthDate.getMonth();
+                        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                            age--;
+                        }
+                        return age;
+                    }
+                };
+            });
+
+         
+          
+            
+        });
+
+
+
+
+
+
+    </script>
+</head>
+<body ng-controller="EmployeeController">
+    <h2>AngularJS - Ajax</h2> 
+    <div ng-include="'UserControl/emplist_lab11.html'"></div>
+</body>
+</html>

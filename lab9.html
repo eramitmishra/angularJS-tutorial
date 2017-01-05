@@ -1,0 +1,69 @@
+﻿<!-- 
+-------------------------------------------
+    AngularJS - Modules
+-------------------------------------------
+Point: 
+        Modules are used to separate logics say services, controllers, application etc. and keep the code clean. 
+    We define modules in separate js files and name them as per the module.js file. 
+    In this example we're going to create two modules.
+
+        # Application Module − used to initialize an application with controller(s).        
+        # Controller Module − used to define the controller.
+------------------------------------------------------------------------------
+    -->
+
+<!DOCTYPE html>
+<html ng-app="mymodule">
+<head>
+    <title>AngularJS - Modules</title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.js"></script>
+    <script src="jsFiles/moduleslab9.js"></script>
+    <script src="jsFiles/controllerLab9.js"></script>
+
+    <script>
+
+       
+
+
+
+    </script>
+</head>
+<body>    
+
+    <div ng-controller="employeeControl">
+         <h3 ng-bind="Empolyee.EmpolyeeDetails()"></h3>
+
+        <table border="1" cellspacing="2" cellpadding="2">
+            <tr>
+                <th>Emp.No</th>
+                <th>Name</th>
+                <th>Department Id</th>
+                <th>Phone No</th>
+                <th>Hire Date</th>
+                <th>Post</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Salary</th>
+                <th>Bonus</th>
+                <th>Commission</th>
+            </tr>
+
+            <tr ng-repeat="emp in Empolyee.EmpolyeesList">
+                <td>{{ emp.EmpNo  }}</td>
+                <td>{{ emp.FNAME}} {{emp.LNAME }}</td>
+                <td>{{ emp.WORK-DEPT }}</td>
+                <td>{{ emp.PHONE-No }}</td>
+                <td>{{ emp.HIRE-DATE}}</td>
+                <td>{{ emp.JOB }}</td>
+                <td>{{ emp.Sex }}</td>
+                <td>{{ Empolyee.EmpolyeeAge(emp.DOB) }}</td>
+                <td>{{ emp.Salary }}</td>
+                <td>{{ emp.Bonus }}</td>
+                <td>{{ emp.Commission }}</td>
+        </table>
+
+    </div>
+
+</body>
+</html>

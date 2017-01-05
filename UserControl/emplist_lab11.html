@@ -1,0 +1,31 @@
+﻿<div>
+    <table class="table-bordered table-hover table-striped table">
+        <tr>
+            <th>Emp.No</th>
+            <th>Name</th>
+            <th>Department Id</th>
+            <th>Phone No</th>
+            <th>Hire Date</th>
+            <th>Post</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Salary</th>
+            <th>Bonus</th>
+            <th>Commission</th>
+        </tr>
+
+        <tr ng-repeat="emp in Empolyee.EmpolyeesList">
+            <td>{{ emp.EmpNo  }}</td>
+            <td>{{ emp.FNAME}} {{emp.LNAME }}</td>
+            <td>{{ emp.WORK-DEPT }}</td>
+            <td>{{ emp.PHONE-No }}</td>
+            <td>{{ emp.HIRE-DATE}}</td>
+            <td>{{ emp.JOB }}</td>
+            <td>{{ emp.Sex }}</td>
+            <td>{{ Empolyee.EmpolyeeAge(emp.DOB) }}</td>
+            <td>{{ emp.Salary }}</td>
+            <td>{{ emp.Bonus }}</td>
+            <td>{{ emp.Commission }}</td>
+    </table>
+
+</div>

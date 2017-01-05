@@ -1,0 +1,88 @@
+﻿<!--  AngularJS - Filters 
+    Angular Js have following Filters:
+1.	uppercase	converts a text to upper case text.
+2.	lowercase	converts a text to lower case text.
+3.	currency	formats text in a currency format.
+4.	filter	filter the array to a subset of it based on provided criteria.
+5.	orderby	orders the array based on provided criteria.
+
+
+filter:      Selects a subset of items from array and returns it as a new array.
+currency:    Formats a number as a currency (ie $1,234.56). When no currency symbol is provided, default symbol for current locale is used.
+number:      Formats a number as text.
+date:        Formats date to a string based on the requested format.
+json:        Allows you to convert a JavaScript object into JSON string.
+lowercase:   Converts string to lowercase.
+uppercase:   Converts string to uppercase.
+limitTo:     Creates a new array or string containing only a specified number of elements. The elements are taken from either the beginning or the end of the source array, string or number, as specified by the value and sign (positive or negative) of limit. Other array-like objects are also supported (e.g. array subclasses, NodeLists, jqLite/jQuery collections etc). If a number is used as input, it is converted to a string.
+orderBy:     Returns an array containing the items from the specified collection, ordered by a comparator function based on the values computed using the expression predicate.
+
+-->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>AngularJS - Filters</title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.js"> </script>
+    <script>
+
+        /*New Calling*/
+        angular.element(document).ready(function () {
+            //document.getElementById()        
+            angular.bootstrap(document, ["myApp1"]);
+        });
+
+
+        angular.module("myApp1", []).controller("studentController", function ($scope) {
+            $scope.student = {
+                fname: "Amit",
+                lname: "Mishra",
+                students: [
+                    { fname: 'Amit', lname: 'Mishra', fees:'202.50' },
+                    { fname: 'Kumar', lname: 'Mishra', fees: '290.50' },
+                    { fname: 'Ravi', lname: 'Singh', fees: '209.50' },
+                    { fname: 'Ram', lname: 'Singh', fees: '207.50' }
+                ],
+                studentsDetails: function () {
+                    return "Name: " + this.fname + " " + this.lname;
+                }
+            };
+        });
+    </script>
+</head>
+<body>
+
+    <div ng-controller="studentController">
+
+        <h3>UPPERCASE filter</h3>     
+        <br />
+        Enter first name:<input type="text" ng-model="student.fname">
+        Enter last name: <input type="text" ng-model="student.lname">
+        <br />
+        Name in Upper Case: {{student.studentsDetails() | uppercase}}
+        <br />
+        <br />
+        <h3>lowercase filter</h3>     
+        <br />
+        <span ng-bind="student.studentsDetails() | lowercase"></span>   
+        <br />
+
+        <table>
+            <thead><h5>Student List</h5></thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+            <tr ng-repeat="std in student.students  | orderBy:'fees'"> <!-- using orderby fliter -->
+                <td>{{std.fname}}</td>
+                <td>{{std.lname}}</td>
+                <td>{{std.fees | currency: "₹"}} <b>    currency fliter</b></td>                
+            </tr>
+        </table>
+
+
+    </div>    
+
+</body>
+</html>
