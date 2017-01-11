@@ -1,0 +1,86 @@
+﻿<!-- AngularJS - Scopes -->
+<!-- 
+    Scope is a special javascript object which plays the role of joining controller with the views. 
+    Scope contains the model data. 
+    In controllers, model data is accessed via $scope object.
+    
+    Following are the important points to be considered in above example.
+       1. $scope is passed as first argument to controller during its constructor definition.        
+       2. $scope.message and $scope.type are the models which are to be used in the HTML page.        
+       3. We've set values to models which will be reflected in the application module whose controller is shapeController.        
+       4. We can define functions as well in $scope.
+     -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AngularJS - Scopes</title>
+	<meta charset="utf-8" />
+    <script src="../Scripts/angular.min.js"> </script>
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script>
+        var mainApp = angular.module("mainApp", []);
+        mainApp.controller("fruitsController", function ($scope) {            
+            $scope.Fruit = {
+                Name : "Apple",
+                Color: "Red",
+                Price : "100.00"
+            }
+        });
+        mainApp.controller("OrangeController", function ($scope) {
+            $scope.Fruit = {
+                Name: "Orange",
+                Color: "Orange",
+                Price: "20.00"
+            }
+
+        });
+        mainApp.controller("BananaController", function ($scope) {
+            $scope.Fruit = {
+                Name: "Banana",
+                Color: "Yellow",
+                Price: "50.00"
+            }
+        });
+
+    </script>
+</head>
+<body ng-app="mainApp">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div ng-controller="fruitsController">
+                <div class="row"><div class="col-lg-12 h2 text-center">Scope</div></div>
+                <div class="row" style="background-color:{{Fruit.Color}}">
+                    <div class="col-xs-2 label"><span class="h4">{{Fruit.Name}}</span></div>
+                    <div class="col-xs-10 label"><span class="h4">{{Fruit.Price}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div ng-controller="fruitsController">
+                <div class="row"><div class="col-lg-12 h2 text-center">Scope Inheritance</div></div>
+                <div class="row" style="background-color:{{Fruit.Color}}">
+                    <div class="col-xs-2 label"><span class="h4">{{Fruit.Name}}</span></div>
+                    <div class="col-xs-10 label"><span class="h4">{{Fruit.Price | currency}}</span></div>
+                </div>
+                <div ng-controller="OrangeController" class="row" style="background-color:{{Fruit.Color}}">
+                    <div class="col-xs-2 label"><span class="text-info h4">{{Fruit.Name}}</span></div>
+                    <div class="col-xs-10 label"><span class="text-info h4">{{Fruit.Price | currency:"GBP"}}</span></div>
+                </div>
+                <div ng-controller="BananaController" class="row" style="background-color:{{Fruit.Color}}">
+                    <div class="col-xs-2 label"><span class="text-danger h4">{{Fruit.Name}}</span></div>
+                    <div class="col-xs-10 label"><span class="text-danger h4">{{Fruit.Price | currency:"&pound;"}}</span></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+
+    
+
+</body>
+</html>
