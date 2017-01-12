@@ -1,0 +1,42 @@
+﻿<!-- provider Recipe -->
+<!-- 
+    provider is used by AngularJS internally to create services, factory etc.
+    during config phase(phase during which AngularJS bootstraps itself). 
+    Below mention script can be used to create MathService that we've created earlier. 
+    Provider is a special factory method with a method get() which is used to return the value/service/factory.    
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>provider</title>
+	<meta charset="utf-8" />
+    <script src="../Scripts/angular.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row"> <div class="col-lg-11"></div><div class="col-lg-1"><a class="left" href="../lab16.html">Home</a></div> </div>
+    <div class="jumbotron">
+        <h1 class="text-center">provider Recipe</h1>        
+    </div>
+    <div class="h4 alert alert-success">provider is used by AngularJS internally to create services, factory etc. during config phase(phase during which AngularJS bootstraps itself). Below mention script can be used to create MathService that we've created earlier. Provider is a special factory method with a method get() which is used to return the value/service/factory.</div>
+    <div class="panel-body h4">
+        <div class="row"><div class="col-lg-12">//define a module</div></div>
+        <div class="row"><div class="col-lg-12">var mainApp = angular.module("mainApp", []);</div></div>
+        <div class="row"><div class="col-lg-12">...</div></div>
+        <div class="row"><div class="col-lg-12">//create a service using provider which defines a method square to return square of a number.</div></div>
+        <div class="row"><div class="col-lg-12">mainApp.config(function($provide) {</div></div>
+        <div class="row"><div class="col-lg-12">$provide.provider('MathService', function() {</div></div>
+        <div class="row"><div class="col-lg-12">this.$get = function() {</div></div>
+        <div class="row"><div class="col-lg-12">var factory = {};</div></div>
+        <div class="row"><div class="col-lg-12">factory.multiply = function(a, b) {</div></div>
+        <div class="row"><div class="col-lg-12">return a * b;</div></div>
+        <div class="row"><div class="col-lg-12">}</div></div>
+        <div class="row"><div class="col-lg-12">return factory;</div></div>
+        <div class="row"><div class="col-lg-12">};</div></div>
+        <div class="row"><div class="col-lg-12">});</div></div>
+        <div class="row"><div class="col-lg-12">});</div></div>
+    </div>
+</body>
+</html>

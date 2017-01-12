@@ -1,0 +1,80 @@
+﻿<!-- AngularJS - Services -->
+<!--
+    AngularJS supports the concepts of "Separation of Concerns" using services architecture.
+    Services are javascript functions and are responsible to do a specific tasks only. 
+    This makes them an individual entity which is maintainable and testable. 
+    Controllers, filters can call them as on requirement basis. 
+    Services are normally injected using dependency injection mechanism of AngularJS.
+
+    AngularJS provides many inbuilt services for example, $https:, $route, $window, $location etc. 
+    Each service is responsible for a specific task for example, 
+            $https: is used to make ajax call to get the server data. 
+            $route is used to define the routing information and so on. 
+    
+    Inbuilt services are always prefixed with $ symbol.
+
+        There are two ways to create a service.
+            1. factory
+            2. service 
+    
+     -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AngularJS - Services</title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.min.js"></script>
+    <script>
+        var app = angular.module("mainApp", []);
+        app.factory("CalculateFactory", function () {
+            var Calculate = {
+                add: function (a, b) { return parseInt(a, 10) + parseInt(b, 10); },
+                sub: function (a, b) { return parseInt(a, 10) - parseInt(b, 10); },
+                mul: function (a, b) { return parseInt(a, 10) * parseInt(b, 10); },
+                div: function (a, b) { return parseInt(a, 10) / parseInt(b, 10); }
+            };
+            return Calculate;
+        });
+        app.service("CalculatorSerivice", function (CalculateFactory) {
+            this.AddService = function (a, b) { return CalculateFactory.add(a, b); };
+            this.SubService = function (a, b) { return CalculateFactory.sub(a, b); };
+            this.MulService = function (a, b) { return CalculateFactory.mul(a, b); };
+            this.DivService = function (a, b) { return CalculateFactory.div(a, b); };
+        });
+        app.controller('CalculatorController', function ($scope, CalculatorSerivice) {
+            reset = function() {
+                $scope.number1 = "";
+                $scope.number2 = "";
+            }
+            $scope.Addition = function () {                
+                $scope.result = ($scope.number1 != "" && $scope.number2 != "") ? CalculatorSerivice.AddService($scope.number1, $scope.number2) : "Textbox Empty";
+                reset();
+            }
+            $scope.Subtraction = function () {
+                $scope.result = ($scope.number1 != "" && $scope.number2 != "") ? CalculatorSerivice.SubService($scope.number1, $scope.number2) : "Textbox Empty";
+                reset();
+            }
+            $scope.Multiplication = function () {
+                $scope.result = ($scope.number1 != "" && $scope.number2 != "") ? CalculatorSerivice.MulService($scope.number1, $scope.number2) : "Textbox Empty";
+                reset();
+            }
+            $scope.Divideation = function () {
+                $scope.result = ($scope.number1 != "" && $scope.number2 != "") ? CalculatorSerivice.DivService($scope.number1, $scope.number2) : "Textbox Empty";
+                reset();
+            }
+        });
+    </script>
+</head>
+<body ng-app="mainApp">
+    <div ng-controller="CalculatorController">
+        <input type="text" name="name" ng-model="number1" value="" />
+        <input type="text" name="name" ng-model="number2" value="" />
+        <p>Result: {{result}}</p>
+        <button ng-click="Addition();">+</button>
+        <button ng-click="Subtraction();">-</button>
+        <button ng-click="Multiplication();">*</button>
+        <button ng-click="Divideation();">/</button>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿<!-- AngularJS - Dependency Injection -->
+<!-- 
+    Dependency Injection is a software design pattern in which components are given their dependencies instead of hard coding them within the component. 
+    This relieves a component from locating the dependency and makes dependencies configurable. 
+    This helps in making components reusable, maintainable and testable.
+
+    AngularJS provides a supreme Dependency Injection mechanism. 
+    It provides following core components which can be injected into each other as dependencies.
+
+       1. value
+       2. factory
+       3. service
+       4. provider
+       5. constant
+    
+     -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AngularJS - Dependency Injection</title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.min.js"></script>        
+    <script src="Scripts/bootstrap.min.js"></script>        
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+
+</head>
+<body class="panel">
+    <div class="row"><div class="col-lg-12 jumbotron h1 text-center">AngularJS - Dependency Injection</div></div>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-xs-2"><a href="angularServices/valueService.html">value</a></div>
+                <div class="col-xs-2"><a href="angularServices/factory.html">factory</a></div>
+                <div class="col-xs-2"><a href="angularServices/service.html">service</a></div>
+                <div class="col-xs-2"><a href="angularServices/provider.html">provider</a></div>
+                <div class="col-xs-2"><a href="angularServices/constant.html">constant</a></div>
+                <div class="col-xs-2"></div>
+                <div class="col-xs-2"></div>
+            </div>                
+            </div>        
+        <div class="col-lg-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h4>value Recipe</h4>
+            <script>
+                var mainapp =
+                    angular.module("mainApp",[]);
+                mainapp.value("defaultInputValue", "Amit Kumar Mishra"); // value Injuctor
+                    main.controller("valueController", function ($scope,defaultInputValue) {
+                        $scope.name = defaultInputValue;
+                        $scope.changeName = function (a) {                            
+                            //mainapp.value("defaultInputValue", a);
+                            this.name = a;
+                        }
+                    });
+                
+
+            </script>
+            <div ng-app="mainApp">
+                <div ng-controller="valueController">
+                    <!--<span ng-bind="name"></span>-->
+                    {{name}}
+                </div>
+                
+                <input type="button" name="jka" value="Change" ng-click="changeName('Ravi Ram');" />   
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

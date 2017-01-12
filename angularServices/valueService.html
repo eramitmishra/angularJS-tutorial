@@ -1,0 +1,40 @@
+﻿<!-- value recipe
+value is simple javascript object and it is used to pass values to controller during config phase. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AngularJS - Dependency Injection (value recipe)</title>
+    <meta charset="utf-8" />
+    <script src="../Scripts/angular.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row"> <div class="col-lg-11"></div><div class="col-lg-1"><a class="left" href="../lab16.html">Home</a></div> </div>
+    <div class="panel-body">
+        <div class="jumbotron">
+            <h1 class="text-center">value injector</h1>
+            <p>value is simple javascript object and it is used to pass values to controller during config phase.</p>
+        </div>         
+<div class="panel-body h4">
+    <div class="row"><div class="col-lg-12">//define a module</div></div>
+    <div class="row"><div class="col-lg-12">var mainApp = angular.module("mainApp", []);</div></div>
+    <div class="row"><div class="col-lg-12"></div></div>
+    <div class="row"><div class="col-lg-12">//create a value object as "defaultInput" and pass it a data.</div></div>
+    <div class="row"><div class="col-lg-12">mainApp.value("defaultInput", 5);</div></div>
+    <div class="row"><div class="col-lg-12">...</div></div>
+    <div class="row"><div class="col-lg-12"></div></div>
+    <div class="row"><div class="col-lg-12">//inject the value in the controller using its name "defaultInput"</div></div>
+    <div class="row"><div class="col-lg-12">mainApp.controller('CalcController', function($scope, CalcService, defaultInput) {</div></div>
+    <div class="row"><div class="col-lg-12">$scope.number = defaultInput;</div></div>
+    <div class="row"><div class="col-lg-12">$scope.result = CalcService.square($scope.number);</div></div>
+    <div class="row"><div class="col-lg-12"></div></div>
+    <div class="row"><div class="col-lg-12">$scope.square = function() {</div></div>
+    <div class="row"><div class="col-lg-12">$scope.result = CalcService.square($scope.number);</div></div>
+    <div class="row"><div class="col-lg-12">}</div></div>
+    <div class="row"><div class="col-lg-12">});</div></div>
+</div>
+    </div>
+</body>
+</html>
