@@ -11,44 +11,47 @@
        2. factory
        3. service
        4. provider
-       5. constant
-    
-     -->
+       5. constant    
+-->
 <!DOCTYPE html>
 <html>
 <head>
     <title>AngularJS - Dependency Injection</title>
 	<meta charset="utf-8" />
     <script src="Scripts/angular.min.js"></script>        
-    <script src="Scripts/bootstrap.min.js"></script>        
+    <!--<script src="Scripts/bootstrap.min.js"></script>-->        
     <link href="Content/bootstrap.css" rel="stylesheet" />
 
 </head>
-<body class="panel">
-    <div class="row"><div class="col-lg-12 jumbotron h1 text-center">AngularJS - Dependency Injection</div></div>
+<body ng-app="mainApp" class="panel">
+    <div class="row"><div class="col-lg-12 jumbotron text-center">AngularJS - Dependency Injection</div></div>
     <div class="row">
         <div class="col-lg-3"></div>
-        <div class="col-lg-6">
+        <div class="col-lg-7">
             <div class="row">
                 <div class="col-xs-2"><a href="angularServices/valueService.html">value</a></div>
                 <div class="col-xs-2"><a href="angularServices/factory.html">factory</a></div>
                 <div class="col-xs-2"><a href="angularServices/service.html">service</a></div>
                 <div class="col-xs-2"><a href="angularServices/provider.html">provider</a></div>
                 <div class="col-xs-2"><a href="angularServices/constant.html">constant</a></div>
-                <div class="col-xs-2"></div>
-                <div class="col-xs-2"></div>
+                <div class="col-xs-3"><a href="angularServices/constant.html">factory vs service vs provider</a></div>
+                <div class="col-xs-1"></div>
             </div>                
             </div>        
-        <div class="col-lg-3"></div>
+        <div class="col-lg-2"></div>
     </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-3">            
+            <span class="glyphicon glyphicon-paperclip"></span><span class="h3">value Recipe</span>
+            <blockquote class="blockquote-reverse">value is simple javascript object and it is used to pass values to controller during config phase.</blockquote>
+        </div>
+        <div class="col-lg-6">
             <h4>value Recipe</h4>
             <script>
                 var mainapp =
                     angular.module("mainApp",[]);
                 mainapp.value("defaultInputValue", "Amit Kumar Mishra"); // value Injuctor
-                    main.controller("valueController", function ($scope,defaultInputValue) {
+                mainapp.controller("valueController", function ($scope, defaultInputValue) {
                         $scope.name = defaultInputValue;
                         $scope.changeName = function (a) {                            
                             //mainapp.value("defaultInputValue", a);
@@ -62,12 +65,142 @@
                 <div ng-controller="valueController">
                     <!--<span ng-bind="name"></span>-->
                     {{name}}
-                </div>
-                
+                </div>                
                 <input type="button" name="jka" value="Change" ng-click="changeName('Ravi Ram');" />   
             </div>
         </div>
+        <div class="col-lg-3">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3"><span class="glyphicon glyphicon-paperclip"></span><span class="h3">factory</span> 
+        <blockquote class="blockquote-reverse">
+            factory is a function which is used to return value. It creates value on demand whenever a service or controller requires. It normally uses a factory function to calculate and return the value.
+        </blockquote>
+        </div>
+        <div class="col-lg-6">
+            <script>
+                //var factoryApp = angular.module("factoryApp", []);
+                mainapp.factory("sumfac", function () {
+                    var fac = {};
+                    fac.sum = function (a,b) {
+                        return parseInt(a) + parseInt(b);
+                    }
+                    return fac;
+                });
+                mainapp.service("sumService", function (sumfac) {
+                    this.Add = function (a, b) { return sumfac.sum(a, b); }
+                });
+
+                mainapp.controller("factory", function ($scope, sumService) {
+                    $scope.number1 = 0;
+                    $scope.number2 = 0;
+                    $scope.result = sumService.Add($scope.number1, $scope.number2);
+                    $scope.Addition = function () {
+                        $scope.result = sumService.Add($scope.number1, $scope.number2);                        
+                    }
+                });
+            </script>
+
+
+            <div class="row" ng-controller="factory">
+                <div class="col-lg-3"><input type="number" name="numb1" ng-model="number1" />        </div>
+                <div class="col-lg-3"><input type="number" name="name" ng-model="number2" /></div>
+                <div class="col-lg-3">{{result}}</div>
+                <div class="col-lg-3"><button ng-click="Addition();">Add</button>    </div>
+            </div>
+            
+
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <span class="glyphicon glyphicon-paperclip"></span><span class="h3">service</span>
+            <blockquote class="blockquote-reverse">
+                service is a singleton javascript object containing a set of functions to perform certain tasks. Services are defined using service() functions and then injected into controllers.
+            </blockquote>
+        </div>
+        <div class="col-lg-6">
+            <script>
+                //var factoryApp = angular.module("factoryApp", []);
+                mainapp.factory("subfac", function () {
+                    var fac = {};
+                    fac.sub = function (a,b) {
+                        return parseInt(a) - parseInt(b);
+                    }
+                    return fac;
+                });
+                mainapp.service("subService", function (subfac) {
+                    this.Sub = function (a, b) { return subfac.sub(a, b); }
+                });
+
+                mainapp.controller("subfactory", function ($scope, subService) {
+                    $scope.number1 = 0;
+                    $scope.number2 = 0;
+                    $scope.result = subService.Sub($scope.number1, $scope.number2);
+                    $scope.Subtraction = function () {
+                        $scope.result = subService.Sub($scope.number1, $scope.number2);
+                    }
+                });
+            </script>
+            <div class="row table-bordered" ng-controller="subfactory">
+                <div class="col-lg-3"><input type="number" name="numb1" ng-model="number1" /></div>
+                <div class="col-lg-3"><input type="number" name="name" ng-model="number2" /></div>
+                <div class="col-lg-3">Result: {{result}}</div>
+                <div class="col-lg-3"><button ng-click="Subtraction();">Sub</button>    </div>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <span class="glyphicon glyphicon-paperclip"></span><span class="h3">provider</span>
+            <blockquote class="blockquote-reverse">
+                provider is used by AngularJS internally to create services, factory etc. during config phase(phase during which AngularJS bootstraps itself). Below mention script can be used to create MathService that we've created earlier. Provider is a special factory method with a method get() which is used to return the value/service/factory.
+            </blockquote>
+        </div>
+        <div class="col-lg-6">
+
+
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <span class="glyphicon glyphicon-paperclip"></span><span class="h3">constant</span>
+            <blockquote class="blockquote-reverse">
+                constants are used to pass values at config phase considering the fact that value can not be used to be passed during config phase.
+            </blockquote>
+        </div>
+        <div class="col-lg-6">mainApp.constant("configParam", "constant value");</div>
+        <div class="col-lg-3"></div>
     </div>
 
+    <div class="row">
+        <div class="col-lg-3"><h4>Note*:</h4></div>
+        <div class="col-lg-6">
+            <ol class="media-list">
+                <li>
+                    <span class="glyphicon glyphicon-arrow-right"></span> Factory Returns the function's return value.
+                </li>
+                <li>
+                    <span class="glyphicon glyphicon-arrow-right"></span> Provider returns the output of the function's $Get Function.
+                </li>                                                     
+                <li>                                                      
+                    <span class="glyphicon glyphicon-arrow-right"></span> Service Returns the Actual Function.
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+           <span class="glyphicon glyphicon-check"></span> <i>ref:</i> 
+            <a href="http://www.simplygoodcode.com/2015/11/the-difference-between-service-provider-and-factory-in-angularjs/">service vs factory vs provider</a>
+            
+
+        </div>
+    </div>
 </body>
 </html>

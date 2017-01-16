@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="../Scripts/angular.js"></script>
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+
+
+    <script>
+        var application = angular.module("diffApp", []);
+        application.factory("FromFactory", function () {
+            var factory = {};
+            factory.message = "This Message from Factory!";
+            return factory;
+        });
+
+        application.service("FromService", function () {
+            this.message = "This Message From Service!";
+        });
+        application.provider("FromProvider", function () {
+            var m1 = "This Message From Provider!";
+            return {
+                $get: function () {
+                    return { message: m1 }
+                }
+            }
+        });
+
+        application.controller("AppController", function ($scope, FromService, FromFactory, FromProvider) {
+            $scope.greetingMessage = [FromService.message, FromFactory.message, FromProvider.message]
+            //$scope.greetingMessage = {
+            //    ServiceMessage: FromService.message,
+            //    FactoryMessage: FromFactory.message,
+            //    ProviderMessage: FromProvider.message
+            //}
+        });
+
+    </script>
+
+</head>
+<body ng-app="diffApp">
+    <div ng-controller="AppController">
+        
+        {{greetingMessage}}
+        <!--<div ng-repeat="ms in greetingMessage ">        
+            {{}}
+        </div>-->
+
+
+    </div>
+
+</body>
+</html>
