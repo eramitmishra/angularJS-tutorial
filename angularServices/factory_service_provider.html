@@ -28,24 +28,26 @@
         });
 
         application.controller("AppController", function ($scope, FromService, FromFactory, FromProvider) {
-            $scope.greetingMessage = [FromService.message, FromFactory.message, FromProvider.message]
-            //$scope.greetingMessage = {
-            //    ServiceMessage: FromService.message,
-            //    FactoryMessage: FromFactory.message,
-            //    ProviderMessage: FromProvider.message
-            //}
+            $scope.title = 'Service vs Factoru';
+            $scope.greetingMessages = [
+                { 'From': 'Service Message', 'Message': FromService.message },
+                { 'From': 'Factory Message', 'Message': FromFactory.message },
+                { 'From': 'Provider Message', 'Message': FromProvider.message }
+            ]
         });
 
     </script>
 
 </head>
 <body ng-app="diffApp">
-    <div ng-controller="AppController">
-        
-        {{greetingMessage}}
-        <!--<div ng-repeat="ms in greetingMessage ">        
-            {{}}
-        </div>-->
+    <div ng-controller="AppController">        
+        {{title}}
+        <div ng-repeat="ms in greetingMessages">        
+            <div class="row">
+                <div class="col-lg-6">{{ms.From}}</div>
+                <div class="col-lg-6">{{ms.Message}}</div>
+            </div>      
+        </div>
 
 
     </div>
