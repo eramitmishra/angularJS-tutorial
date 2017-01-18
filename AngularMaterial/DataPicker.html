@@ -16,16 +16,28 @@
     <script>
 
         var myapp = angular.module('MyApp', ['ngMaterial', 'ngMessages']);
-           myapp.controller('AppCtrl', function ($scope) {
-                $scope.myDate = new Date();
-                $scope.minDate = new Date($scope.myDate.getFullYear(), $scope.myDate.getMonth() - 2, $scope.myDate.getDate());
-                $scope.maxDate = new Date($scope.myDate.getFullYear(), $scope.myDate.getMonth() + 2, $scope.myDate.getDate());                
-            });
-            myapp.config(function ($mdDateLocaleProvider) {
-     $mdDateLocaleProvider.formatDate = function (date) {
-                    return moment(date).format('ddd DD-MMM-YYYY');
-                }
-            });
+        myapp.controller('AppCtrl', function ($scope) {
+                var plus3day = new Date();
+                $scope.myDate = new Date(plus3day.getFullYear(), plus3day.getMonth(), plus3day.getDate() + 3);
+                $scope.minDate = new Date($scope.myDate.getFullYear(), $scope.myDate.getMonth(), $scope.myDate.getDate());
+                $scope.maxDate = new Date($scope.myDate.getFullYear() + 1, $scope.myDate.getMonth(), $scope.myDate.getDate() - 10);
+                $scope.ReturnmyDate = $scope.myDate;
+                $scope.ReturnminDate = $scope.minDate;
+                $scope.ReturnmaxDate = $scope.maxDate;
+                $scope.change = function (ss) {
+                    debugger;
+                    var plus7day = new Date(ss);
+                    $scope.ReturnmyDate = new Date(plus7day.getFullYear(), plus7day.getMonth(), plus7day.getDate() + 7);
+                    $scope.ReturnminDate = new Date($scope.ReturnmyDate.getFullYear(), $scope.ReturnmyDate.getMonth(), $scope.ReturnmyDate.getDate());
+                    $scope.ReturnmaxDate = new Date($scope.ReturnmyDate.getFullYear() + 1, $scope.ReturnmyDate.getMonth(), $scope.ReturnmyDate.getDate());
+                };
+
+        });
+        myapp.config(function ($mdDateLocaleProvider) {
+            $mdDateLocaleProvider.formatDate = function (date) {
+                return moment(date).format('ddd DD-MMM-YYYY');
+            }
+        });
     </script>
 </head>
 <body>
@@ -33,10 +45,11 @@
   
         <div ng-controller="AppCtrl">
             <md-content>
-                <!--<md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>-->
-            <md-datepicker ng-model="myDate" name="dateField"  md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+                <md-datepicker id="depDate" ng-model="myDate" name="depdateField" md-min-date="minDate" md-max-date="maxDate"  ng-change="change(myDate);"></md-datepicker>
+                <md-datepicker id="returnDate" ng-model="ReturnmyDate" name="returndateField" md-min-date="ReturnminDate" md-max-date="ReturnmaxDate"></md-datepicker>
             </md-content>
         </div>
+    
        
     </body>
 </html>
