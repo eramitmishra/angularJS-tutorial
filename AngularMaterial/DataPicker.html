@@ -7,7 +7,7 @@
     <script src="../Scripts/angular.min.js"></script>
     <script src="../Scripts/angular-animate/angular-animate.min.js"></script>
     <script src="../Scripts/angular-aria/angular-aria.min.js"></script>
-    <script src="../Scripts/angular-messages.min.js"></script>
+    <!--<script src="../Scripts/angular-messages.min.js"></script>-->
     <script src="../Scripts/angular-material/angular-material.min.js"></script>
     <script src="../Scripts/momentjs/moment.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -15,7 +15,7 @@
 
     <script>
 
-        var myapp = angular.module('MyApp', ['ngMaterial', 'ngMessages']);
+        var myapp = angular.module('MyApp', ['ngMaterial']);
         myapp.controller('AppCtrl', function ($scope) {
                 var plus3day = new Date();
                 $scope.myDate = new Date(plus3day.getFullYear(), plus3day.getMonth(), plus3day.getDate() + 3);
@@ -25,10 +25,10 @@
                 $scope.ReturnminDate = $scope.minDate;
                 $scope.ReturnmaxDate = $scope.maxDate;
                 $scope.change = function (ss) {
-                    debugger;
+                    //debugger;
                     var plus7day = new Date(ss);
-                    $scope.ReturnmyDate = new Date(plus7day.getFullYear(), plus7day.getMonth(), plus7day.getDate() + 7);
-                    $scope.ReturnminDate = new Date($scope.ReturnmyDate.getFullYear(), $scope.ReturnmyDate.getMonth(), $scope.ReturnmyDate.getDate());
+                    $scope.ReturnmyDate = new Date(plus7day.getFullYear(), plus7day.getMonth(), plus7day.getDate() + 6);
+                    $scope.ReturnminDate = new Date(plus7day.getFullYear(), plus7day.getMonth(), plus7day.getDate() + 1);
                     $scope.ReturnmaxDate = new Date($scope.ReturnmyDate.getFullYear() + 1, $scope.ReturnmyDate.getMonth(), $scope.ReturnmyDate.getDate());
                 };
 
@@ -40,16 +40,12 @@
         });
     </script>
 </head>
-<body>
-
-  
+<body>  
         <div ng-controller="AppCtrl">
             <md-content>
                 <md-datepicker id="depDate" ng-model="myDate" name="depdateField" md-min-date="minDate" md-max-date="maxDate"  ng-change="change(myDate);"></md-datepicker>
-                <md-datepicker id="returnDate" ng-model="ReturnmyDate" name="returndateField" md-min-date="ReturnminDate" md-max-date="ReturnmaxDate"></md-datepicker>
+                <md-datepicker id="returnDate"  ng-model="ReturnmyDate" name="returndateField" md-min-date="ReturnminDate" md-max-date="ReturnmaxDate"></md-datepicker>
             </md-content>
         </div>
-    
-       
     </body>
 </html>

@@ -28,7 +28,7 @@
         });
 
         application.controller("AppController", function ($scope, FromService, FromFactory, FromProvider) {
-            $scope.title = 'Service vs Factoru';
+            $scope.title = 'Service vs Factory vs Provider.';
             $scope.greetingMessages = [
                 { 'From': 'Service Message', 'Message': FromService.message },
                 { 'From': 'Factory Message', 'Message': FromFactory.message },
@@ -41,11 +41,15 @@
 </head>
 <body ng-app="diffApp">
     <div ng-controller="AppController">        
-        {{title}}
+        <div class="row jumbotron">
+            <div class="col-lg-12 text-center h2">{{title}}</div>
+        </div>
+         
         <div ng-repeat="ms in greetingMessages">        
             <div class="row">
-                <div class="col-lg-6">{{ms.From}}</div>
-                <div class="col-lg-6">{{ms.Message}}</div>
+                <div class="col-lg-2 text-center"><span class="glyphicon glyphicon-info-sign"></span>  {{ms.From}}</div>
+                <div class="col-lg-2 text-primary">{{ms.Message}}</div>
+                <div class="col-lg-8"></div>
             </div>      
         </div>
 
