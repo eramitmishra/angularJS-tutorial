@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>$watch()</title>
+    <meta charset="utf-8" />
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+
+</head>
+<body class="container-fluid container">
+    <div class="jumbotron h3">$watch()</div>
+    <div class="alert-info alert">The <code>$scope.watch()</code> function creates a watch of some variable.</div>
+    <div class="alert-info alert ">
+        When you register a watch you pass two functions as parameters to the <code>$watch()</code> function:
+        <ul>
+            <li class="list-group-item-text">A value function</li>
+            <li class="list-group-item-text">A listener function</li>
+        </ul>
+    </div>
+    <div class="">
+        <header>Here is an example:</header> 
+        <pre>
+      $scope.$watch(function() {},
+              function() {}
+       );
+</pre>
+    </div>
+    <div class="alert-info alert">The first function is the value function and the second function is the listener function.</div>
+
+    <div class="alert-info alert">
+        The value function should return the value which is being watched. AngularJS can then check the value returned against the value the watch function returned the last time. That way AngularJS can determine if the value has changed.
+        Here is an example:    
+        <pre>
+$scope.$watch(
+    function(scope) { return scope.data.myVar },
+    function() {}
+);
+</pre>
+    
+        <blockquote class="blockquote">
+            <p style="color:black;">This example valule function returns the <mark>$scope</mark> variable <code>$scope.data.myVar</code>. If the value of this variable changes, a different value will be returned, and AngularJS will call the listener function.</p>
+            <p style="color:black;">Notice how the value function takes the scope as parameter (without the $ in the name). Via this parameter the value function can access the $scope and its variables. The value function can also watch global variables instead if you need that, but most often you will watch a <code>$scope variable</code>.</p>
+            <p style="color:black;">The listener function should do whatever it needs to do if the value has changed. Perhaps you need to change the content of another variable, or set the content of an HTML element or something. Here is an example:</p>
+        </blockquote>   
+        <pre>
+       $scope.$watch(function(scope) { return scope.data.myVar },
+              function(newValue, oldValue) {
+                  document.getElementById("").innerHTML =
+                      "" + newValue + "";
+              }
+             );
+    </pre>  
+        
+        <blockquote class="blockquote">
+            <p>
+                This example sets the inner HTML of an HTML element to the new value of the variable,
+                embedded in the b element which makes the value bold.
+            </p>
+            <p>
+                Of course you could have done this using the code <code>{{data.myVar }}</code>,
+                but this is just an example of what you can do inside the listener function.
+            </p>
+        </blockquote>
+    </div>
+
+</body>
+</html>
