@@ -1,27 +1,88 @@
 ﻿<!-- AngularJS - Custom Directives -->
-<!-- 
-    Custom directives are used in AngularJS to extend the functionality of HTML. Custom directives are defined using "directive" function. A custom directive simply replaces the element for which it is activated. AngularJS application during bootstrap finds the matching elements and do one time activity using its compile() method of the custom directive then process the element using link() method of the custom directive based on the scope of the directive. AngularJS provides support to create custom directives for following type of elements.
+<!--
+    Custom directives are used in AngularJS to extend the functionality of HTML.
+    Custom directives are defined using "directive" function.
+    A custom directive simply replaces the element for which it is activated.
+    AngularJS application during bootstrap finds the matching elements and do one time activity
+        using its compile() method of the custom directive then process the element using link()
+        method of the custom directive based on the scope of the directive.
+    AngularJS provides support to create custom directives for following type of elements.
 
        1. Element directives − Directive activates when a matching element is encountered.
-        
+
        2. Attribute − Directive activates when a matching attribute is encountered.
-        
+
        3. CSS − Directive activates when a matching css style is encountered.
-        
+
        4. Comment − Directive activates when a matching comment is encountered.
+ref: http://tutorials.jenkov.com/angularjs/custom-directives.html
+
 -->
+
 <!DOCTYPE html>
-<html>
+<html ng-app="mainApp">
 <head>
     <title></title>
-	<meta charset="utf-8" />
-    <script src="Scripts/angular.min.js"></script>
+    <meta charset="utf-8" />
+    <script src="Scripts/angular.js"></script>
+    
+</head>
+<body >
+    <div ng-controller="CustDireCntrl">
+
+        <employee empid="Amit"></employee>
+        <br />  
+        <employee empid="Karan"></employee>
+    </div>
     <script>
+        var mainApp = angular.module("mainApp", []);
+
+        mainApp.directive("employee", function () {
+            var directice = {};
+            directice.restrict = "E"; /*
+                                            * By setting restrict to E ,We specify that only HTML elements.
+                                            * By setting restrict to A ,We specify that only HTML attributes.
+                                            * We can also use a value of AE which will match both HTML element names and attribute names.
+                                      */
+            directice.template = "Employee Name:<b>{{Emp.Name}}</b>, Salary: <b>{{Emp.Salary | currency}}";
+            /* directive.templateUrl = "/myapp/html-templates/userinfo-template.html";*/ //for template
+
+            directice.scope = {
+                Emp : "=empid"
+            };
+            directive.compile = function (element, attributes) {
+                element.css("border", "1px solid #cccccc");
+
+                var linkFunction = function ($scope, element, attributes) {
+                    element.html("Employee Name:<b>" + $scope.Emp.Name + "</b> , Salary: <b>" + $scope.Emp.Salary + "</b><br/>");
+
+                    element.css("background-color", "#ffff00");
+                }
+
+                return linkFunction;
+            }
+
+            return directice;
+        });
+        mainApp.controller('CustDireCntrl', function($scope)
+        {
+        //mainApp.controller("CustDireCntrl", function ($scope) 
+
+            $scope.Amit = {};
+            $scope.Amit.Name = "Jakob";
+            $scope.Amit.Salary = "220";
+
+            $scope.Karan = {};
+            $scope.Karan.Name = "Jakob";
+            $scope.Karan.Salary = "120";
+
+
+
+
+        });
+
 
 
     </script>
-</head>
-<body>
-
 </body>
 </html>
