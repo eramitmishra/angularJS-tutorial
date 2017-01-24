@@ -13,8 +13,20 @@
             <th>Bonus</th>
             <th>Commission</th>
         </tr>
-
         <tr ng-repeat="emp in Empolyee.EmpolyeesList">
+            <td>{{ emp.EmpNo  }}</td>
+            <td>{{ emp.FNAME}} {{emp.LNAME }}</td>
+            <td>{{ emp.WORK-DEPT }}</td>
+            <td>{{ emp.PHONE-No }}</td>
+            <td>{{ emp.HIRE-DATE |  date: 'fullDate'}}</td>
+            <td>{{ emp.JOB }}</td>
+            <td>{{ emp.Sex }}</td>
+            <td>{{ Empolyee.EmpolyeeAge(emp.DOB) | number }}</td>
+            <td>{{ emp.Salary | currency }}</td>
+            <td>{{ emp.Bonus | currency}}</td>
+            <td>{{ emp.Commission | currency}}</td>
+    </table>
+        <!--<tr ng-repeat="emp in Empolyee.EmpolyeesList">
             <td>{{ emp.EmpNo  }}</td>
             <td>{{ emp.FNAME}} {{emp.LNAME }}</td>
             <td>{{ emp.WORK-DEPT }}</td>
@@ -26,6 +38,6 @@
             <td>{{ emp.Salary }}</td>
             <td>{{ emp.Bonus }}</td>
             <td>{{ emp.Commission }}</td>
-    </table>
+    </table>-->
 
 </div>

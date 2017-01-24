@@ -1,0 +1,114 @@
+﻿<!-- AngularJS - Internationalization -->
+<!-- 
+    AngularJS supports inbuilt internationalization for three types of filters currency, date and numbers. 
+    We only need to incorporate corresponding js according to locale of the country. 
+    By default it handles the locale of the browser. 
+    For example, to use Japan locale, use following script.
+     -->
+<!-- 
+    Imp: Internationalization in Filters
+    Some of the built-in AngularJS filters supports internationalization. For instance, the date and currency filters have built-in support for internationalization. Here is how you would normally use these filters:
+
+        {{ theDate  | date: 'fullDate' }}
+        {{ theValue | currency}}
+        {{ theValue | number }}
+
+    The date filter will format the variable theDate as a date according to the locale chosen in the web app. The same is true for the currency and number filter.
+
+    Filters are covered in more detail in the section about filtering in my views and directives tutorial:     
+ -->
+<!-- 
+    1. The Date Filter: 
+                        * short
+                        * medium
+                        * fullDate
+                        * shortDate
+                        * mediumDate
+                        * longDate
+                        * shortTime
+                        * mediumTime
+    2. The Currency Filter.
+    3. The Number Filter
+     -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AngularJS - Internationalization</title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/i18n/angular-locale_ja.js"></script>
+
+    <link rel="stylesheet" href="Content/bootstrap.css" />
+    <script>
+       
+        var mainApp = angular.module("mainApp", []).controller("japanController", function ($scope,$http) {
+
+            var url = "Data/EmployeeData.json";
+            $http.get(url).success(function (response) {               
+                $scope.Empolyee = {
+                    EmpolyeesList: response,
+                    EmpolyeeAge: function (dateString) {
+                        var today = new Date();
+                        var birthDate = new Date(dateString);
+                        var age = today.getFullYear() - birthDate.getFullYear();
+                        var m = today.getMonth() - birthDate.getMonth();
+                        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                            age--;
+                        }
+                        return age;
+                    }
+                };
+            });
+
+            
+
+
+        });
+
+        ///*New injector*/
+        angular.element(document).ready(function () {
+            angular.bootstrap(document, ["mainApp"]);
+        });
+
+       
+
+    </script>
+</head>
+<body >
+    <div ng-controller="japanController">
+    <h2 class="jumbotron">AngularJS - Internationalization</h2> 
+
+        <div ng-include="'UserControl/emplist_lab11.html'"></div>
+
+        <!--<table class="table-bordered table-hover table-striped table">
+            <tr>
+                <th>Emp.No</th>
+                <th>Name</th>
+                <th>Department Id</th>
+                <th>Phone No</th>
+                <th>Hire Date</th>
+                <th>Post</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Salary</th>
+                <th>Bonus</th>
+                <th>Commission</th>
+            </tr>
+
+            <tr ng-repeat="emp in Empolyee.EmpolyeesList">
+                <td>{{ emp.EmpNo  }}</td>
+                <td>{{ emp.FNAME}} {{emp.LNAME }}</td>
+                <td>{{ emp.WORK-DEPT }}</td>
+                <td>{{ emp.PHONE-No }}</td>
+                <td>{{ emp.HIRE-DATE |  date: 'fullDate'}}</td>
+                <td>{{ emp.JOB }}</td>
+                <td>{{ emp.Sex }}</td>
+                <td>{{ Empolyee.EmpolyeeAge(emp.DOB) | number }}</td>
+                <td>{{ emp.Salary | currency }}</td>
+                <td>{{ emp.Bonus | currency}}</td>
+                <td>{{ emp.Commission | currency}}</td>
+        </table>-->
+
+    </div>
+</body>
+</html>
