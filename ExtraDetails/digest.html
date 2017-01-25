@@ -6,11 +6,11 @@
     <link href="../Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body class="container">    
-    <div class="panel panel-body">
         <div class="jumbotron h3">$digest()</div>    
-        <div class="alert alert-success">The <code>$scope.$digest()</code> function iterates through all the watches in the $scope object, and its child $scope objects (if it has any). When $digest() iterates over the watches, it calls the value function for each watch. If the value returned by the value function is different than the value it returned the last time it was called, the listener function for that watch is called.</div>
-        <div class="alert alert-success">The $digest() function is called whenever AngularJS thinks it is necessary. For instance, after a button click handler has been executed, or after an AJAX call returns (after the done() / fail() callback function has been executed).</div>
-        <div class="alert alert-info">You may encounter some corner cases where AngularJS does not call the <code>$digest()</code> function for you. You will usually detect that by noticing that the data bindings do not upate the displayed values. In that case, call <code>$scope.$digest()</code> and it should work. Or, you can perhaps use <code>$scope.$apply()</code> instead which I will explain in the next section.</div>
+    <div class="alert alert-success blockquote">
+        <div class="alert alert-info">The <code>$scope.$digest()</code> function iterates through all the watches in the $scope object, and its child $scope objects (if it has any). When $digest() iterates over the watches, it calls the value function for each watch. If the value returned by the value function is different than the value it returned the last time it was called, the listener function for that watch is called.</div>
+        <article class="alert alert-info">The $digest() function is called whenever AngularJS thinks it is necessary. For instance, after a button click handler has been executed, or after an AJAX call returns (after the done() / fail() callback function has been executed).</article>
+        <article class="alert alert-info">You may encounter some corner cases where AngularJS does not call the <code>$digest()</code> function for you. You will usually detect that by noticing that the data bindings do not upate the displayed values. In that case, call <code>$scope.$digest()</code> and it should work. Or, you can perhaps use <code>$scope.$apply()</code> instead which I will explain in the next section.</article>
     </div>
 </body>
 </html>

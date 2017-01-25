@@ -2,21 +2,33 @@
 <html>
 <head>
     <title>$apply()</title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <style>
+        p {
+            margin: 20px;
+            padding: 10px;
+        }
+
+        body {
+            font: normal 14px 'ubuntu',sans-serif;
+        }
+    </style>
 </head>
 <body class="container">
     <div class="jumbotron h3">$apply()</div>
-    <div class="alert alert-info">The <code>$scope.$apply()</code> function takes a function as parameter which is executed, and after that <code>$scope.$digest() </code> is called internally. That makes it easier for you to make sure that all watches are checked, and thus all data bindings refreshed. Here is an $apply()</div>
+    <div class="alert alert-success blockquote">
+        <div>The <code>$scope.$apply()</code> function takes a function as parameter which is executed, and after that <code>$scope.$digest() </code> is called internally. That makes it easier for you to make sure that all watches are checked, and thus all data bindings refreshed. Here is an $apply()</div>
 
-    <div class="alert text-justify alert-success">
-        example:
-        <pre> 
+        <div class="alert text-justify alert-success">
+            example:
+            <pre> 
 $scope.$apply(function() {
     $scope.data.myVar = "Another value";
 });
         </pre>
+        </div>
+        <div >The function passed to the <code>$apply()</code> as parameter will change the value of <code>$scope.data.myVar</code>. When the function exits AngularJS will call the <code>$scope.$digest()</code> function so all watches are checked for changes in the watched values.</div>
     </div>
-    <div  class="alert alert-info">The function passed to the <code>$apply()</code> as parameter will change the value of <code>$scope.data.myVar</code>. When the function exits AngularJS will call the <code>$scope.$digest()</code> function so all watches are checked for changes in the watched values.</div>
 </body>
 </html>
