@@ -1,5 +1,5 @@
 ﻿<!-- AngularJS - Custom Directives -->
-<!--
+<!-- 
     Custom directives are used in AngularJS to extend the functionality of HTML.
     Custom directives are defined using "directive" function.
     A custom directive simply replaces the element for which it is activated.
@@ -9,11 +9,11 @@
     AngularJS provides support to create custom directives for following type of elements.
 
        1. Element directives − Directive activates when a matching element is encountered.
-
+        
        2. Attribute − Directive activates when a matching attribute is encountered.
-
+        
        3. CSS − Directive activates when a matching css style is encountered.
-
+        
        4. Comment − Directive activates when a matching comment is encountered.
 ref: http://tutorials.jenkov.com/angularjs/custom-directives.html
 
@@ -23,17 +23,8 @@ ref: http://tutorials.jenkov.com/angularjs/custom-directives.html
 <html ng-app="mainApp">
 <head>
     <title></title>
-    <meta charset="utf-8" />
-    <script src="Scripts/angular.js"></script>
-    
-</head>
-<body >
-    <div ng-controller="CustDireCntrl">
-
-        <employee empid="Amit"></employee>
-        <br />  
-        <employee empid="Karan"></employee>
-    </div>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.min.js"></script>
     <script>
         var mainApp = angular.module("mainApp", []);
 

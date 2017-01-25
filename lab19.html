@@ -1,0 +1,51 @@
+﻿<!-- AngularJS $watch() , $digest() and $apply() -->
+<!-- The AngularJS $scope functions $watch(), $digest() and $apply() are some of the central functions in AngularJS. Understanding $watch(), $digest() and $apply() is essential in order to understand AngularJS.
+
+When you create a data binding from somewhere in your view to a variable on the $scope object, AngularJS creates a "watch" internally. A watch means that AngularJS watches changes in the variable on the $scope object. The framework is "watching" the variable. Watches are created using the $scope.$watch() function which I will cover later in this text.
+
+At key points in your application AngularJS calls the $scope.$digest() function. This function iterates through all watches and checks if any of the watched variables have changed. If a watched variable has changed, a corresponding listener function is called. The listener function does whatever work it needs to do, for instance changing an HTML text to reflect the new value of the watched variable. Thus, the $digest() function is what triggers the data binding to update.
+
+Most of the time AngularJS will call the $scope.$watch() and $scope.$digest() functions for you, but in some situations you may have to call them yourself. Therefore it is really good to know how they work.
+
+The $scope.$apply() function is used to execute some code, and then call $scope.$digest() after that, so all watches are checked and the corresponding watch listener functions are called. The $apply() function is useful when integrating AngularJS with other code.
+
+I will get into more detail about the $watch(), $digest() and $apply() functions in the remainder of this text.
+    
+     -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AngularJS $watch() , $digest() and $apply()</title>
+	<meta charset="utf-8" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <script src="Scripts/angular.min.js"></script>
+    <script>
+    </script>
+</head>
+<body class="container">
+    <div class="jumbotron">AngularJS $watch(), $digest() and $apply()</div>
+
+
+    <pre>
+        angular
+    .module("app", [])
+    .controller("ctrl", function($scope, $rootScope) {
+        $scope.number = 3;
+        $scope.Quantity = 2;
+        $scope.UnitPrice = 4;
+        // $scope.$watch("Quantity", function(newval, oldVal) {
+        //     $scope.Total = newval * $scope.UnitPrice;
+        // });
+        // $scope.$watch("UnitPrice", function(newval, oldVal) {
+        //     $scope.Total = newval * $scope.UnitPrice;
+        // });
+        $scope.$watchGroup(["Quantity", "UnitPrice"], function(newval, oldVal) {
+            $scope.Total = newval[0] * newval[1];
+        });
+    });
+</pre>
+
+</body>
+</html>

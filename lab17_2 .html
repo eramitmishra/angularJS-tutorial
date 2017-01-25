@@ -1,0 +1,63 @@
+﻿<!-- 
+    using AngularJS Custom Directives "templateUrl"
+    in this Lab, i used AngularJS Custom Directives with templateUrl
+     -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>using AngularJS Custom Directives "templateUrl"</title>
+    <meta charset="utf-8" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/angular.js"></script>
+    <script>
+        var empApp = angular.module("empApp", [])
+            .controller("EmployeeController", function ($scope, $http) {
+                $scope.Ram = { name: "Ram", address: "Delhi" };
+                $scope.Ravi = { name: "Ravi", address: "Mumbai" };
+                $scope.emplist = [{ name: "Mohit", address: "Agra" }, { name: "Ramesh", address: "Delhi" }];
+
+            })
+            .directive("empDetails", function () {
+                var empDirective = {};
+                empDirective.restrict = "E";
+                //empDirective.template = "Employee Name: <b>{{emp.name}}</b>, Address: <b>{{emp.address}}</b><br/>";
+                empDirective.templateUrl = "templates/EmpTemplate.html";
+                empDirective.scope = {
+                    emp: "=name"
+                };
+                //empDirective.compile = function (element, attributes) {                    
+                //    var linkFunction = function ($scope, element, attributes) {
+                //        if (angular.isArray($scope.emp)) {
+                //            var div = "<div class='divemp'><h2>Employees List</h2>";
+                //            for (var i = 0; i < $scope.emp.length; i++) {
+                //                var empData = $scope.emp[i];
+                //                div += "<div> Employee Name: <b>" + empData.name + "</b>, Address: <b>" + empData.address + "</b></div>";
+                //            }
+                //            div += "</div>";
+                //            element.html(div);
+                //        }                    
+                //    }
+                //    return linkFunction;
+                //}
+                return empDirective;
+            });
+    </script>
+
+    <style>
+        .divemp {
+            background-color :#306fd3;
+            color : white;
+                width: 350px;
+        }
+
+    </style>
+</head>
+<body ng-app="empApp">
+    <div ng-controller="EmployeeController">
+        <emp-Details name="Ram"></emp-Details>        
+        <emp-Details name="Ravi"></emp-Details>
+        <br />  
+        <emp-Details name="emplist"></emp-Details>
+    </div>
+</body>
+</html>
