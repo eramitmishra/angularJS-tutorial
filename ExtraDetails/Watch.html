@@ -38,11 +38,11 @@
             The value function should return the value which is being watched. AngularJS can then check the value returned against the value the watch function returned the last time. That way AngularJS can determine if the value has changed.
             Here is an example:
         </p>    
-            <pre>
-$scope.$watch(
-    function(scope) { return scope.data.myVar },
-    function() {}
-);
+<pre>
+    $scope.$watch(
+            function(scope) {}, <code><b>Value Funtion: </b>The value function should return the value which is being watched.</code>
+            function(newValue,oldValue) {} <code><b>Listener Funtion: </b>The listener function should do whatever it needs to do if the value has changed.</code>
+    );
 </pre>
             <pre>
 <mark class="label-info">Following Exp for Multiple watch ng-model:</mark>
