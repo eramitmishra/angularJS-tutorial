@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<!-- AngularJS : An Alternative Approach to Controllers  -->
+<html>
+<head>
+    <title>AngularJS : An Alternative Approach to Controllers</title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.min.js"></script>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script>
+
+        var mainApp = angular.module("mainApp", []).
+            controller("alterCntrl", function ($scope) {
+                this.title = "AngularJS : An Alternative Approach to Controllers";
+                this.sayhi = function () {
+                    alert("Hello Amit Mishra");
+                }
+                return  $scope.alterCntrl = this;
+
+            });
+
+        angular.element(document).ready(function () {
+            angular.bootstrap(document, ["mainApp"]);
+        });
+    </script>
+</head>
+<body ng-controller="alterCntrl" class="container">
+    
+    <h1>{{alterCntrl.title}}</h1>
+    <div >
+        <div class="btn btn-primary" ng-click="alterCntrl.sayhi();">Click Me!!</div>
+    </div>
+    <div class="blockquote">
+        <p>Calling function by controller $scope.</p>
+        <p>when we call function from controller name it so clear which function belong to Controller</p>
+    <pre>
+        <code>
+          var mainApp = angular.module("mainApp", []).
+                controller("alterCntrl", function ($scope) {
+                this.title = "AngularJS : An Alternative Approach to Controllers";
+                this.sayhi = function () {
+                    alert("Hello Amit Mishra");
+                }
+                return  $scope.alterCntrl = this; << This is Alternative Approach to controllers.
+            });
+        </code>
+    </pre>
+    </div>
+
+
+</body>
+</html>
