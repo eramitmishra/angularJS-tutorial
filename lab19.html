@@ -10,69 +10,78 @@ Most of the time AngularJS will call the $scope.$watch() and $scope.$digest() fu
 The $scope.$apply() function is used to execute some code, and then call $scope.$digest() after that, so all watches are checked and the corresponding watch listener functions are called. The $apply() function is useful when integrating AngularJS with other code.
 
 I will get into more detail about the $watch(), $digest() and $apply() functions in the remainder of this text.
-    
+
      -->
 
 <!DOCTYPE html>
 <html ng-app="mainWacth">
 <head>
     <title>AngularJS $watch() , $digest() and $apply()</title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
     <script src="Scripts/angular.min.js"></script>
     <script>
-        var mainApp = angular.module("mainWacth",[])
-            .controller("cntrlMain", function ($scope) {
+        var mainApp = angular.module("mainWacth", [])
+            .controller("cntrlMain", ['$scope', 'orderByFilter',
+
+            function ($scope, orderBy) {
                 $scope.number = 3;
                 $scope.Quantity = 2;
                 $scope.UnitPrice = 40;
-                $scope.$watch(function($scope) {
+                $scope.$watch(function ($scope) {
                     return $scope.Quantity;
-                }, function (nev, olv) {                    
-                    $scope.TotalPrice = nev * $scope.UnitPrice;                    
+                }, function (nev, olv) {
+                    $scope.TotalPrice = nev * $scope.UnitPrice;
                 });
+
                 $scope.products = [
                                     {
-                                        "name": "p1", "price": "15", "quantity": "6", "total": 90
+                                        "name": "p1", "price": "15", "quantity": "60", "InStock": 90
                                     },
                                     {
-                                        "name": "p2", "price": "25", "quantity": "4", "total": 100
+                                        "name": "p2", "price": "25", "quantity": "41", "InStock": 100
                                     }
                                     ,
                                     {
-                                        "name": "p3", "price": "20.10", "quantity": "4", "total": 100
+                                        "name": "p3", "price": "20.10", "quantity": "14", "InStock": 100
                                     }
                                     ,
                                     {
-                                        "name": "p4", "price": "25.52", "quantity": "4", "total": 120
+                                        "name": "p4", "price": "25.52", "quantity": "41", "InStock": 120
                                     }
                 ];
+                $scope.StockLimit = 30;
+                $scope.propertyName = 'name';
+                $scope.reverse = false;
+                $scope.products = orderBy($scope.products, $scope.propertyName, $scope.reverse);
+                $scope.sortBy = function (propertyName) {
+                    $scope.reverse = (propertyName !== null && $scope.propertyName === propertyName)
+                        ? !$scope.reverse : false;
+                    $scope.propertyName = propertyName;
+                    $scope.products = orderBy($scope.products, $scope.propertyName, $scope.reverse);
+                };
 
+                
 
+                $scope.$watchCollection(function ($scope) {
+                    return $scope.products[0];
+                }, function (newValue, oldValue) {
+                    debugger;
+                });
+            }
 
-                /*
-                   {
-                   "products": [
-                                    {
-                                    "name": "p1","price": "15","quantity": "6","total": 90
-                                    },
-                                    {
-                                    "name": "p2", "price": "25", "quantity": "4", "total": 100
-                                    }
-                                    ,
-                                    {
-                                    "name": "p3", "price": "20.10", "quantity": "4", "total": 100
-                                    }
-                                    ,
-                                    {
-                                    "name": "p4", "price": "25.52", "quantity": "4", "total": 120
-                                    }
-                               ]
-                   }
-                */
-            });
+            ]);
     </script>
+    <style>
+
+        .sortorder:after {
+  content: '\25b2';   
+}
+.sortorder.reverse:after {
+  content: '\25bc';   
+}
+    </style>
 </head>
 <body class="container">
     <div class="jumbotron">AngularJS $watch(), $digest() and $apply()</div>
@@ -95,16 +104,30 @@ I will get into more detail about the $watch(), $digest() and $apply() functions
 
     <div ng-controller="cntrlMain">
 
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-primary label-warning"><a href="javascript:void(0);" ng-click="sortBy('name')">Product Name</a></th>
+                    <th class="text-primary label-warning"><a href="javascript:void(0);" ng-click="sortBy('price')">Price Per Unit</a></th>
+                    <th class="text-primary label-warning"><a href="javascript:void(0);" ng-click="sortBy('quantity')">Order Quantity</a></th>
+                    <th class="text-primary label-warning">Order Price</th>
+                    <th class="text-primary label-warning"><a href="javascript:void(0);" ng-click="sortBy('InStock')" >Current Stock</a><span class="sortorder"  ng-class="{reverse: reverse}"></span></th>
+                    <th class="text-primary label-warning">After Order Stock</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="p in products" class="text-danger">
+                <td>{{p.name}}</td>
+                <td>{{p.price | currency:"$" }}</td>
+                <td>{{p.quantity}}</td>
+                <td>{{p.quantity * p.price | currency}}</td>
+                <td>{{p.InStock}}</td>
+                <td style="{{p.InStock - p.quantity > StockLimit ? '':'background-color:Red;color:white;'}}">{{p.InStock - p.quantity | number}}</td>
+            </tr>
+        </table>
 
-        <div ng-repeat="p in products">
-
-            {{p.name}}
-            {{p.price }}
-{{p.quantity}}
-{{p.total}}
-        </div>
 
 
+        <hr />
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -119,10 +142,10 @@ I will get into more detail about the $watch(), $digest() and $apply() functions
                     <td>{{UnitPrice}}</td>
                     <td>{{TotalPrice}}</td>
                 </tr>
-            </tbody>            
+            </tbody>
         </table>
-        
-        
+
+
     </div>
 </body>
 </html>
