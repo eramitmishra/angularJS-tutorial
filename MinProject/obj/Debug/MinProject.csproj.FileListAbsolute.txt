@@ -18,7 +18,6 @@ D:\github\angularJS-tutorial\MinProject\bin\Microsoft.AI.Agent.Intercept.dll
 D:\github\angularJS-tutorial\MinProject\bin\Microsoft.AI.DependencyCollector.dll
 D:\github\angularJS-tutorial\MinProject\bin\Microsoft.AI.PerfCounterCollector.dll
 D:\github\angularJS-tutorial\MinProject\bin\Microsoft.AI.ServerTelemetryChannel.dll
-D:\github\angularJS-tutorial\MinProject\bin\Microsoft.AI.Web.dll
 D:\github\angularJS-tutorial\MinProject\bin\Microsoft.AI.WindowsServer.dll
 D:\github\angularJS-tutorial\MinProject\bin\Microsoft.ApplicationInsights.dll
 D:\github\angularJS-tutorial\MinProject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
@@ -28,7 +27,6 @@ D:\github\angularJS-tutorial\MinProject\bin\System.Web.Http.dll
 D:\github\angularJS-tutorial\MinProject\bin\System.Web.Http.WebHost.dll
 D:\github\angularJS-tutorial\MinProject\bin\Microsoft.AI.DependencyCollector.xml
 D:\github\angularJS-tutorial\MinProject\bin\Microsoft.AI.ServerTelemetryChannel.xml
-D:\github\angularJS-tutorial\MinProject\bin\Microsoft.AI.Web.xml
 D:\github\angularJS-tutorial\MinProject\bin\Microsoft.AI.WindowsServer.xml
 D:\github\angularJS-tutorial\MinProject\bin\Microsoft.ApplicationInsights.xml
 D:\github\angularJS-tutorial\MinProject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
@@ -36,7 +34,6 @@ D:\github\angularJS-tutorial\MinProject\bin\Newtonsoft.Json.xml
 D:\github\angularJS-tutorial\MinProject\bin\System.Net.Http.Formatting.xml
 D:\github\angularJS-tutorial\MinProject\bin\System.Web.Http.xml
 D:\github\angularJS-tutorial\MinProject\bin\System.Web.Http.WebHost.xml
-D:\github\angularJS-tutorial\MinProject\obj\Debug\MinProject.csprojResolveAssemblyReference.cache
 D:\github\angularJS-tutorial\MinProject\obj\Debug\MinProject.dll
 D:\github\angularJS-tutorial\MinProject\obj\Debug\MinProject.pdb
 D:\github\angularJS-tutorial\MinProject\bin\roslyn\csc.exe.config
@@ -53,3 +50,4 @@ D:\github\angularJS-tutorial\MinProject\bin\roslyn\System.IO.FileSystem.dll
 D:\github\angularJS-tutorial\MinProject\bin\roslyn\System.IO.FileSystem.Primitives.dll
 D:\github\angularJS-tutorial\MinProject\bin\roslyn\vbc.exe.config
 D:\github\angularJS-tutorial\MinProject\bin\roslyn\vbc.rsp
+D:\github\angularJS-tutorial\MinProject\obj\Debug\MinProject.csprojResolveAssemblyReference.cache

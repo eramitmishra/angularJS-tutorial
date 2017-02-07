@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html ng-app="routeApp">
+<head>
+    <title>Home</title>
+	<meta charset="utf-8" />
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+    <link href="Content/bootstrap.css" rel="stylesheet" />    
+    <!--<base href="/" />-->
+    <script>
+
+
+        var mainApp = angular.module("routeApp", ["ngRoute"]);
+        mainApp.config(function ($routeProvider) {
+            $routeProvider
+                .when("/", { templateUrl: "Views/home.html" })
+                .when("/aboutus", { templateUrl: "Views/about.html" })
+                .when("/contactus", { templateUrl: "Views/contact.html" });
+
+            //$locationProvider.html5Mode(true);
+        });
+
+
+
+
+
+        //angular.element(document).ready(function () {
+        //    angular.bootstrap(document, ["routeApp"]);
+        //});
+    </script>
+   <!-- ng-controller="routeCtrl"-->
+
+</head>
+<body  class="container">
+    <div class="jumbotron"><h1>Wellcome To Router Application</h1>  </div>
+
+    <div class="row">
+        <div class="col-lg-4">            
+            <ul>
+                <li><a href="#/home">Home</a></li>
+                <li><a href="#/aboutus">About us</a></li>
+                <li><a href="#/contactus">Contact us</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            <div ng-view></div>
+        </div>
+    </div>
+
+    
+
+
+
+
+</body>
+</html>
